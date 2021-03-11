@@ -309,4 +309,37 @@ class ProductsController extends VoyagerBaseController
             }
         }
     }
+
+    public function postCheckout(Request $request) {
+        if (!Session::has('cart')) {
+            return redirect()->route('shoppingcart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        Stripe::setApiKey('sk_test_GK6GUk5Ig7w4KN9QOyXLukRx');
+        dd($token = $request->stripeToken);
+        try {
+            $charges = Charge::create(array(
+                "amount" => $cart->totalPrice * 100,
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'),
+                "description" => "Test Charges"
+            ));
+            //dd($charges);
+            $order = new Order();
+            $order->cart = serialize($cart);
+            $order->address = $request->input('address');
+            $order->name = $request->input('name');
+            $order->payment_id = $charges->id;
+
+            Auth::user()->orders()->save($order);
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
+
+        Session::forget('cart');
+
+        return redirect()->route('home')->with('success','Successfully purchased products!');
+    }
 }

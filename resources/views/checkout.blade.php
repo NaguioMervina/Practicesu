@@ -192,7 +192,7 @@
     <script>
         (function(){
             // Create a Stripe client
-            var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+            var stripe = Stripe('pk_test_51ITgsSI7s8C6ToT2wFHU7JCkOYyqHFBe0cEgOy2yS4cOH2UHKxO2fKpvTYGHzjFwiAVCCFD8ijxmRx5Tc9Gt88KI00MRdEEK62');
 
             // Create an instance of Elements
             var elements = stripe.elements();
@@ -280,7 +280,7 @@
             }
 
             // PayPal Stuff
-            var form = document.querySelector('#paypal-payment-form');
+          /*  var form = document.querySelector('#paypal-payment-form');
             var client_token = "{{ $paypalToken }}";
 
             braintree.dropin.create({
@@ -293,20 +293,10 @@
               if (createErr) {
                 console.log('Create Error', createErr);
                 return;
-              }
+              } */
 
               // remove credit card option
-              var elem = document.querySelector('.braintree-option__card');
-              elem.parentNode.removeChild(elem);
-
-              form.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                instance.requestPaymentMethod(function (err, payload) {
-                  if (err) {
-                    console.log('Request Payment Method Error', err);
-                    return;
-                  }
+              
 
                   // Add the nonce to the form and submit
                   document.querySelector('#nonce').value = payload.nonce;
@@ -318,4 +308,3 @@
         })();
     </script>
 @endsection
-*/
