@@ -186,13 +186,13 @@
 
 @endsection
 
-@section('extra-js')
-    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+ @section('extra-js')
+ <script src="https://js.stripe.com/v3/"></script>
 
     <script>
         (function(){
             // Create a Stripe client
-            var stripe = Stripe('{{ config('services.stripe.key') }}');
+            var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
             // Create an instance of Elements
             var elements = stripe.elements();
@@ -318,3 +318,4 @@
         })();
     </script>
 @endsection
+*/
