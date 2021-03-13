@@ -171,11 +171,11 @@ class CheckoutController extends Controller
             'billing_province' => $request->province,
             'billing_postalcode' => $request->postalcode,
             'billing_phone' => $request->phone,
-            'billing_name_on_card' => $request->name_on_card,
+          //  'billing_name_on_card' => $request->name_on_card,
             'billing_discount' => getNumbers()->get('discount'),
             'billing_discount_code' => getNumbers()->get('code'),
             'billing_subtotal' => getNumbers()->get('newSubtotal'),
-            'billing_tax' => getNumbers()->get('newTax'),
+           // 'billing_tax' => getNumbers()->get('newTax'),
             'billing_total' => getNumbers()->get('newTotal'),
             'error' => $error,
         ]);
@@ -202,10 +202,10 @@ class CheckoutController extends Controller
             'billing_discount' => getNumbers()->get('discount'),
             'billing_discount_code' => getNumbers()->get('code'),
             'billing_subtotal' => getNumbers()->get('newSubtotal'),
-            'billing_tax' => getNumbers()->get('newTax'),
+           // 'billing_tax' => getNumbers()->get('newTax'),
             'billing_total' => getNumbers()->get('newTotal'),
             'error' => $error,
-            'payment_gateway' => 'paypal',
+           // 'payment_gateway' => 'paypal',
         ]);
 
         // Insert into order_product table
